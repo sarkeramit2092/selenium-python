@@ -1,0 +1,35 @@
+🔸 profile_path = os.path.abspath("chrome-selenium-profile")
+This creates an absolute path (full directory path) to a folder named chrome-selenium-profile in your current working directory.
+📁 Example:
+If your script is in D:/python/selenium, this line will resolve to:
+D:/python/selenium/chrome-selenium-profile
+This folder will act as a separate user profile for Chrome. It’s like creating a whole new Chrome user account just for Selenium to use — it stores cookies, login sessions (like WhatsApp Web QR), bookmarks, etc.
+
+🔸 options.add_argument(f"user-data-dir={profile_path}")
+This tells Chrome to launch using that profile folder instead of the default one (C:/Users/YourName/AppData/Local/Google/Chrome/User Data).
+Using a separate one avoids interfering with your main Chrome, and it avoids "DevToolsActivePort" errors.
+If the folder doesn’t exist, Chrome will automatically create it.
+
+🔸 options.add_argument("--remote-debugging-port=9222")
+This opens up a remote debugging port that tools like Selenium or DevTools can connect to.
+🛠 Useful for:
+Debugging issues
+Reducing some startup errors
+Avoiding DevToolsActivePort crash
+
+🔸 options.add_argument("--no-sandbox")
+Disables Chrome’s sandboxing security model — it’s not recommended for production but useful in test/dev environments to prevent certain permission or crash issues.
+
+🔸 options.add_argument("--disable-dev-shm-usage")
+Fixes issues on Linux/WSL2/Docker, where /dev/shm (shared memory space) is too small.
+It avoids Chrome crashing due to memory space.
+
+✅ Doesn’t hurt to include even on Windows if you're experiencing weird crashes.
+
+⚡ Why all this matters
+Using this setup:
+You don’t have to scan the WhatsApp QR code every time.
+
+You avoid crashing issues by isolating the session.
+
+You don’t interfere with your normal Chrome browser.
