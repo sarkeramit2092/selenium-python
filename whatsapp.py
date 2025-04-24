@@ -22,9 +22,13 @@ driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 1000)
 
 # WhatsApp automation code
-target = '"My Lady"'
-message = "I Love You"
-number_of_times = 10000
+target = '"Secret Group"'
+message = [
+    "Hey You",
+    "Hlw by the way",
+    "Enjoy Summer!!"
+]
+number_of_times = 100
 
 contact_path = f'//span[contains(@title,{target})]'
 contact = wait.until(EC.presence_of_element_located((By.XPATH, contact_path)))
@@ -33,9 +37,11 @@ contact.click()
 message_box_path = '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div[2]/div[1]'
 message_box = wait.until(EC.presence_of_element_located((By.XPATH, message_box_path)))
 
-for _ in range(number_of_times):
-    message_box.send_keys(message + Keys.ENTER)
-    time.sleep(0.2)
+for x in range(number_of_times):
+    for line in message:
+        message_box.send_keys(line)
+        message_box.send_keys(Keys.ENTER)
+        time.sleep(2)
 
 input("Messages sent! Press Enter to quit...")
 driver.quit()
