@@ -1,0 +1,17 @@
+PowerShell
+==========
+
+cd D:\python\selenium
+
+====================================================
+python -m venv venv
+
+🔍 Breakdown:
+
+python: This calls the Python interpreter that's currently installed on your system.
+
+-m venv: This tells Python to run the built-in venv module, which is used to create virtual environments.
+
+venv (the last part): This is the name of the folder where the virtual environment will be created. You can name it anything (e.g., env, .venv, myenv), but venv is a common convention.
+=====================================================
+.\venv\Scripts\Activate.ps1
